@@ -1,6 +1,6 @@
 
 
-const down = document.querySelector('th > a');
+const down1 = document.querySelector('th a');
 const tableData = document.querySelectorAll('td.border')
 const tableRows1 = document.querySelectorAll('tbody tr');
 // const tableRows = Array.from(document.querySelector('tbody').children)
@@ -22,18 +22,22 @@ return sortArr
 
 
 const handleClick = () =>{
-  const arr = changeOrder();
+  // const arr = changeOrder();
+  const down = down1.firstElementChild;
+  // console.log(down)
   console.log(arr)
   const htmlArr = [];
-
+ const arr = down.classList.contains('fa-caret-up') ? changeOrder() : changeOrder().reverse();
   arr.forEach((elem) => {htmlArr.push(elem.innerHTML)}) 
 
   tableRows1.forEach((elem, i) =>{
     elem.innerHTML = htmlArr[i]
   })
 
+down.classList.toggle('fa-caret-down');
+  down.classList.toggle('fa-caret-up');
 }
-handleClick()
+
 // console.log(tableRows1,tableRows, cells)
 
 //   const arr = [];
@@ -89,9 +93,5 @@ const numberArr = sortArr.sort((a, b) => a - b)
 // console.log(newArray)
 // console.log(sortArr)
 // console.log(numberArr)
-down.addEventListener('click', () => { 
-  // console.log('ok')
- 
-  
-  })
+down1.addEventListener('click',handleClick )
 
