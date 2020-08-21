@@ -15,7 +15,7 @@ tableRows1.forEach((elem) => sortArr.push(elem));
 // console.log(sortArr)
 
 sortArr.sort((a,b) => {
-  return (a.querySelector('td:last-of-type').textContent) - (b.querySelector('td:last-of-type').textContent)
+  return (a.querySelector('td:last-of-type').textContent).split(':').join('') - (b.querySelector('td:last-of-type').textContent.split(':').join(''))
 })
 return sortArr
 }
@@ -70,16 +70,40 @@ const sortArr = []
   newArray.push(data.innerHTML)
  })
 
+// function convertTime(cells) {
+//  cells.forEach(cell => {
+//    const time = cell[2].innerHTML
+//    const sec = time % 60
+//    const min = Math.floor((time % 3600) / 60)
+//    const hours = Math.floor(time / 3600)
+//    return cell[2].innerHTML = `${hours}:${min}:${sec}`
+//  })
+// }
+
+
  const time = () => {
    let totalSeconds = document.querySelectorAll('td:last-child');
-   console.log(totalSeconds)
-   const hours = Math.floor(totalSeconds / 3600);
-   totalSeconds %= 3600;
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = (totalSeconds % 60)
-  return `${hours}:${minutes}:${seconds}`
+   const arrayLast = Object.values(totalSeconds)
+const {innerHTML} = totalSeconds
+
+   console.log(arrayLast)
+   arrayLast.forEach((cell, i)=> {
+   const time = cell.innerHTML
+   const sec = time % 60
+   const min = Math.floor((time % 3600) / 60)
+   const hours = Math.floor(time / 3600)
+   return cell.innerHTML = `${hours}:${min}:${sec}`
+ })
+  //  console.log(totalSeconds)
+  //  const hours = Math.floor(totalSeconds / 3600);
+  //  totalSeconds %= 3600;
+  // const minutes = Math.floor(totalSeconds / 60);
+  // const seconds = (totalSeconds % 60)
+
+  // console.log(hours,minutes, seconds)
+  // return `${hours}:${minutes}:${seconds}`
  }
-// console.log(time(tableRows[0].querySelector('td:last-child').innerHTML))
+
 time()
 
 sortArr = newArray.filter((value,index,Arr) => (index+1) % 3 == 0)
