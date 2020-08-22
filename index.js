@@ -10,7 +10,6 @@ const animation = (time) => {
       elem.style.opacity = `${time}`;
       elem.style.transition = 'all 1s';
     },i * 300)
-    
   })
 }
 
@@ -26,13 +25,13 @@ const sortElements = () =>{
 const updateContentAndIcon = () =>{
   const iconButton = icon.firstElementChild;
   const newContentArray = [];
-  
   const sortedArray = iconButton.classList.contains('fa-caret-up') ? sortElements() : sortElements().reverse();
-  sortedArray.forEach((elem) => {newContentArray.push(elem.innerHTML)}) 
-  
+
+  sortedArray.forEach((elem) => {newContentArray.push(elem.innerHTML)}) ;
   tableRowElements.forEach((elem, i) =>{
     elem.innerHTML = newContentArray[i]
   })
+
   iconButton.classList.toggle('fa-caret-down');
   iconButton.classList.toggle('fa-caret-up');
   animation(0);
